@@ -1,0 +1,270 @@
+<html>
+<head>
+	<title>WEBPAGE 2</title>
+	<script type="text/javascript">
+		function validate()
+		{
+			var fn=document.getElementById("fname");
+			var ln=document.getElementById("lname");
+			//var clg=document.getElementById("college");
+			var x=document.getElementsByName("gender");
+			
+			var flag=0;
+			var sport=document.getElementsByName("sports");
+			var sprt="";
+			var z=document.getElementById("city");
+			var w=z.options[z.selectedIndex].value;
+			var un=document.getElementById("username").value;
+			var mail= /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+)\.([a-z]+)(\.[a-z]+)?$/;
+			
+			var pw=document.getElementById("pwd").value;
+			var pn=document.getElementById("ph").value;
+			var pn_p=/^[789]{1}[0-9]{9}$/;
+			var bd=document.getElementById("birth-date").value;
+			var fc=document.getElementById("favcolor").value;
+			var file=document.getElementById("doc").value;
+			var pin=document.getElementById("num").value;
+			var range=document.getElementById("rr").value;
+			
+	
+			//first name
+			if(fn.value.trim()=="")
+			{
+				alert("please enter First Name");
+				return false;
+				}
+			
+			//last name
+			else if(ln.value.trim()=="")
+			{
+				alert("please enter Last Name");
+				return false;
+				}
+			
+			//colg name
+			/*else if(clg.value.trim()=="")
+			{
+				alert("please enter college name");
+				return false;
+			}*/
+			
+			//radio buttons
+			for(i=0;i<x.length;i++)
+			{
+				if(x[i].checked==true)
+				{
+					var brch=x[i].value;
+					flag=1;
+					}
+			}
+			
+			if(flag==0)
+			{
+				alert("please select a gender");
+				return false;
+			}
+			
+			
+			//checkboxes
+			for(i=0;i<sport.length;i++)
+			{
+				if(sport[i].checked==true)
+				{
+					sprt=sprt+ " " +sport[i].value;
+				}
+			}
+			if(sprt=="")
+			{
+				alert("please select your favorite sports");
+				return false;
+			}
+			
+			//drop down
+			if(w=="")
+			{
+				alert("please select your city");
+				return false;
+			}
+			
+			//username
+			if(un.trim()=="")
+			{
+				alert("please enter username");
+				return false;
+			}
+			else if(mail.test(un)==false)
+			{
+				alert("invalid email");
+				return false;
+			}
+			
+			//password
+			if(pw.trim()=="")
+			{
+				alert("please enter password");
+				return false;
+			}
+			
+			else if((pw.trim().length<6 | pw.length>10))
+			{
+				alert("password size must be 6 to 8 characters");
+				return false;
+			}
+			else if(pw.search(/[A-Z]/)==-1)
+			{
+				alert("password must contain atleast one uppercase alphabet");
+				return false;
+			}
+			else if(pw.search(/[a-z]/)==-1)
+			{
+				alert("password must contain atleast one lowercase alphabet");
+				return false;
+			}
+			else if(pw.search(/[0-9]/)==-1)
+			{
+				alert("passwrod must contain atleast one number");
+				return false;
+			}
+			else if(pw.search(/[\@\#\$\%\&\;\:\.\,]/)==-1)
+			{
+				alert("password must contain atleast one special character");
+				return false;
+			}
+			
+			//phone number
+			if(pn.trim()=="")
+			{
+				alert("please enter phone number");
+				return false;
+			}
+			else if(pn_p.test(pn)==false)
+			{
+				alert("invalid phone number");
+				return false;
+			}
+			
+			//date picker
+			if(bd=="")
+			{
+				alert("enter your birthdate");
+				return false;
+			}
+			
+			//color picker
+			if(fc=="#f5f0f0")
+			{
+				alert("please enter your favorite color");
+				return false;
+			}
+			
+			//file picker
+			if(file=="")
+			{
+				alert("please upload the file document");
+				return false;
+			}
+			
+			//range
+			if(pin=="")
+			{
+				alert("please enter the pincode value");
+				return false;
+			}
+			
+			
+			
+			
+			alert("form validated");
+			alert("VALUES ON FORM ARE\n\nFirst Name: "+fn.value+"\nLast Name: "+ln.value+"\nCollege Name: "+clg.value+"\nDepartment: "+brch+"\nSports: "+sprt+"\nCity: "+w+"\nUsername: "+un+"\nPassword: "+pw+"\nPhone number: "+pn+"\nBirth-Date: "+bd+"\nFavorite Color: "+fc+"\nFile: "+file+"\nPin: "+pin+"\nRange: "+range);
+			return true;
+			
+				
+	}	
+			
+			
+	</script>
+</head>
+
+<body style="background-color:olive">
+	<h2 align="center" style="font-size:40 ;background:white">CUSTOMER SIGN-UP PAGEe<h2>
+	<form onsubmit="return validate()" action="custinsert.php" method="POST" >
+		<label>First Name:</label><br>
+		<input type="text" id="fname" name="fname" ><br><br>
+		<label>Last Name:</label><br>
+		<input type="text" id="lname" name="lname" autofocus autocomplete required>
+		
+		<br><br>
+		<label>University/College Name (If student)</label><br>
+		<input type="text" id="college" placeholder="Enter college name here"><br>
+		
+		<br><label for="country">Country:</label>
+		<input type="text" id="country" name="country" value="India" readonly disabled>
+		<br>
+		<h2>Select Gender<h2>
+
+		<input type="radio" id="mech" name="gender" value="Male">Male
+		<br><input type="radio" id="civil" name="gender" value="Female" >Female
+		<br><input type="radio" id="comp" name="gender" value="Trans-Gender">Trans-Gender
+		<br><input type="radio" id="ece" name="gender" value="Other">Other
+
+		<br>
+		
+
+		<p>Fav Sports</p>
+		<input type="checkbox" id="e" name="sports" value="football" checked>Football
+		<br><input type="checkbox" id="e" name="sports" value="cricket">Cricket
+		<br><input type="checkbox" id="e" name="sports" value="tennis">Tennis
+		<br><input type="checkbox" id="e" name="sports" value="badminton">Badminton
+
+	
+		<br><br>
+		<label>Select your city</label><br>
+		<select id="city" name="city">
+		<option></option>
+		<option value="Pernem">Pernem</option>
+		<option value="Mapsa">Mapsa</option>
+		<option value="Panjim">Panjim</option>
+		<option value="Vasco">Vasco</option>
+		</select>
+	
+		<h2>Email and Password field<h2>
+		<label>Email:</label><br>
+		<input type="text" id="username" name="username" ><br>
+		<label>Password:</label><br>
+		<input type="password" id="pwd" name="pwd"><br><br>
+		
+		<label>Enter Contact Number</label><br>
+		<input type="text" id="ph" name="phone">
+		
+		<br><br>
+
+
+	
+		<br>
+		<label>Enter your Birth Date</label>
+		<input type="date" id="birth-date" name="Birth-Date">
+
+		<br>
+		<br>
+		<label>Enter your Fav Color</label>
+		<input type="color" id="favcolor" name="favcolor" value="#f5f0f0">
+
+		<br><br>
+		<label>Select to upload Pass-Port size Photo</label>
+		<input type="file" id="doc">
+
+		<br><br>
+		<label>Enter PIN code from 2 to 8</label>
+		<input type="number" id="num" name="Number"min="2" max="8">
+
+	
+		<br><br>
+		<label>Enter range(between 10 to 35)
+		<input type="range" id="rr" name="range" min="10" max="35" step="5">
+		<br><br><br>
+		<input type="reset">
+		<input type="submit">
+	</form>
+</body>
+
+</html>
